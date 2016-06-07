@@ -15,7 +15,7 @@
 <h3>댓글</h3>
 <a href="{% url "blog:comment_new" post.pk %}" class = "btn btn-primary btn-block">댓글쓰기</a>
 
- <ul>
+    <ul>
     {% for comment in post.comment_set.all %}
     <li>
         {{ comment.message }}
