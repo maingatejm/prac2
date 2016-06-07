@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from .models import Post, Comment
 from .forms import CommentForm
 from django.contrib.auth.decorators import login_required
-
+from django.contrib import messages
 
 def index(request):
 	post_list = Post.objects.all()
@@ -23,6 +23,7 @@ def comment_new(request, post_pk):
 			comment.post = get_object_or_404(Post, pk=post_pk)
 			comment.user = request.user
 			comment.save()
+			messages.success(request, '새 댓글 등록')
 			return redirect('blog:post_detail', post_pk)
 	else:
 		form = CommentForm()
@@ -38,6 +39,7 @@ def comment_edit(request, post_pk, pk):
 			comment.post = get_object_or_404(Post, pk=post_pk)
 			comment.user = request.user
 			comment.save()
+			messages.success(request, '댓글 수정 완료')
 			return redirect('blog:post_detail', post_pk)
 	else:
 		form = CommentForm(instance=comment)
