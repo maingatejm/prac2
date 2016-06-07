@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.contrib.humaize.templatetags.humanize import intcomma
+from django.contrib.humanize.templatetags.humanize import intcomma
 from .models import Post
 
 class PostAdmin(admin.ModelAdmin):
